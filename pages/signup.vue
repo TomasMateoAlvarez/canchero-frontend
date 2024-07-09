@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from '#ui/types'
-import { z } from 'zod'
+import type { FormSubmitEvent } from '#ui/types';
+import { z } from 'zod';
 
 const user = useUser()
 if (user.value)
@@ -22,7 +22,7 @@ const state = reactive({
 })
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  const res = await $fetch('/api/auth/signup', {
+  const res = await $fetch('http://localhost:3000/api/v1/auth', {
     ignoreResponseError: true,
     method: 'POST',
     body: event.data,
