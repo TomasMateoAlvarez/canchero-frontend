@@ -38,15 +38,26 @@ const navigation: { title: string, to: string }[] = []
       </div>
       <div class="flex-1 justify-between flex-row-reverse lg:overflow-visible lg:flex lg:pb-0 lg:pr-0 lg:h-auto" :class="[open ? 'h-screen pb-20 overflow-auto pr-4' : 'hidden']">
         <div>
-          <ul class="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
+          <ul class="flex flex-row space-x-6">
             <li class="mt-4 lg:mt-0">
-              <AuthButton />
+              <!-- Aquí los <p> están dentro de un contenedor flex -->
+              <div class="flex space-x-4">
+                <NuxtLink to="/register">
+                  Registro
+                </NuxtLink>
+                <NuxtLink to="/login">
+                  Acceder
+                </NuxtLink>
+                <NuxtLink to="/dashboard">
+                  Dashboard
+                </NuxtLink>
+              </div>
             </li>
           </ul>
         </div>
         <div class="flex-1">
           <ul class="justify-center items-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
-            <li v-for="link in navigation" :key="link.to" class="">
+            <li v-for="link in navigation" :key="link.to">
               <NuxtLink :href="link.to">
                 {{ link.title }}
               </NuxtLink>

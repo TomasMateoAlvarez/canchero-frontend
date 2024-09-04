@@ -3,26 +3,46 @@ import type { FormSubmitEvent } from '#ui/types'
 
 const modalOpen = ref(false)
 const route = useRoute()
-const { data, refresh } = await useFetch('/api/me/orgs')
+
+// Datos mock en lugar de llamada a la API
+const mockData = {
+  orgs: [
+    { org: { name: 'Org 1', slug: 'org-1' } },
+    { org: { name: 'Org 2', slug: 'org-2' } },
+  ],
+}
+
+const data = ref(mockData)
+function refresh() {
+  // Aquí podrías refrescar los datos mock si fuera necesario
+}
+
 const items = computed(() => [
-  data.value?.orgs.map(o => ({ label: o.org.name, to: `/app/${o.org.slug}` })) || [],
+  ...data.value.orgs.map(o => ({ label: o.org.name, to: `/app/${o.org.slug}` })) || [],
   [{ icon: 'i-solar-add-circle-line-duotone', label: 'Create new team', click: () => {
     modalOpen.value = true
   } }],
 ])
-const org = computed(() => data.value?.orgs.find(o => o.org.slug === route.params.slug)?.org)
+
+const org = computed(() => data.value.orgs.find(o => o.org.slug === route.params.slug)?.org)
 
 const formState = reactive({
   name: undefined,
 })
+
 async function onSubmit(event: FormSubmitEvent<any>) {
   modalOpen.value = false
-  const org = await $fetch('/api/orgs', {
-    method: 'post',
-    body: event.data,
-  })
+
+  // Simulación de creación de una nueva organización
+  const newOrg = {
+    org: {
+      name: event.data.name,
+      slug: event.data.name.toLowerCase().replace(/\s+/g, '-'),
+    },
+  }
+  data.value.orgs.push(newOrg)
   refresh()
-  navigateTo(`/app/${org.slug}`)
+  navigateTo(`/app/${newOrg.org.slug}`)
 }
 </script>
 

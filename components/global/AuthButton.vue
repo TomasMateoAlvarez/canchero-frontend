@@ -27,7 +27,7 @@ const items = computed(() => [
       Dashboard
     </NuxtLink>
     <span v-else class="text-sm">{{ user?.name }}</span>
-    <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }">
+    <!-- <UDropdown :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }">
       <UAvatar icon="i-solar-user-bold-duotone" />
 
       <template #account="{ item }">
@@ -46,7 +46,7 @@ const items = computed(() => [
 
         <UIcon :name="item.icon" class="flex-shrink-0 h-4 w-4 ms-auto" />
       </template>
-    </UDropdown>
+    </UDropdown> -->
   </div>
   <div v-else>
     <NuxtLink
