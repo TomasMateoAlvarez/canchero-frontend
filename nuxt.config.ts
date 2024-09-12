@@ -1,4 +1,4 @@
-import process from 'node:process'
+import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   devtools: {
@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     timeline: {
       enabled: true,
     },
+  },
+
+  router: {
+    middleware: ['auth.global'], // Middleware de autenticación global
   },
 
   runtimeConfig: {
@@ -31,5 +35,6 @@ export default defineNuxtConfig({
     apiHost: process.env.PLAUSIBLE_API_HOST || 'https://plausible.io',
     ignoredHostnames: ['localhost'],
   },
+
   compatibilityDate: '2024-08-21',
 })
