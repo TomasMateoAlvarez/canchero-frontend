@@ -18,7 +18,7 @@ export default defineNuxtConfig({
       url: process.env.PUBLIC_URL || '',
     },
   },
-
+  //yokese si pusheo esta verga o no
   modules: [
     '@nuxt/ui',
     '@formkit/auto-animate/nuxt',
